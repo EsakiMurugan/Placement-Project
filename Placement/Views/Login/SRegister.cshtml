@@ -1,0 +1,146 @@
+﻿@using Microsoft.AspNetCore.Http
+@model Placement.Models.Student
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    ViewData["Title"] = "SRegister";
+    Layout = "Common";
+}
+
+
+
+
+ @{
+     ViewBag.StudentId = @HttpContextAccessor.HttpContext.Session.GetInt32("StudentId");
+  }
+@if (ViewBag.StudentId!=null)
+{
+    <div class="alert alert-success alert-dismissible fade show col-12 card p-3 px-5 py-5 mt-3 " style = "text-align:center" role="alert">
+        <strong>Thanks for Registration!</strong> 
+        <a id="manage" class="nav-link text-dark" asp-controller="Home" asp-action="Privacy" title="Manage">Hai your Login ID is @ViewBag.StudentId!</a>
+        @*<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>*@
+         <a class=" btn btn-primary btn-sm" style="text-align:center" asp-controller="Login" asp-action="SLogin">Login</a>
+    </div>
+   
+}
+ 
+        
+
+<div class="row row d-flex aligns-items-center justify-content-center">
+    <div class="col-md-10 card p-3 px-5 py-5 mt-3 bg-light">
+
+        <h1 style = text-align:center >Student Registration </h1>
+        
+         
+    
+        <form asp-action="SRegister" class = "row g-6" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-12">
+                <label asp-for="StudentName" class="control-label"></label>
+                <input asp-for="StudentName" class="form-control" />
+                <span asp-validation-for="StudentName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="DOB" class="control-label"></label>
+                <input asp-for="DOB" class="form-control" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Native_place" class="control-label"></label>
+                <input asp-for="Native_place" class="form-control" />
+                <span asp-validation-for="Native_place" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Reg_no" class="control-label"></label>
+                <input asp-for="Reg_no" class="form-control" />
+                <span asp-validation-for="Reg_no" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Mobile_No" class="control-label"></label>
+                <input asp-for="Mobile_No" class="form-control" />
+                <span asp-validation-for="Mobile_No" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label asp-for="StudentEmail" class="control-label"></label>
+                <input asp-for="StudentEmail" class="form-control" />
+                <span asp-validation-for="StudentEmail" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Department" class="form-label"></label>
+                <select asp-for="Department" class="form-select">
+                    <option selected>  </option>
+                    <option> EEE </option>
+                    <option> ECE </option>
+                    <option> CSE </option>
+                    <option> MECH </option>
+                    <option> CIVIL </option>
+                </select>
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="SSLC" class="control-label"></label>
+                <input asp-for="SSLC" class="form-control" />
+                <span asp-validation-for="SSLC" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="XII" class="control-label"></label>
+                <input asp-for="XII" class="form-control" />
+                <span asp-validation-for="XII" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Diploma" class="control-label"></label>
+                <input asp-for="Diploma" class="form-control" />
+                <span asp-validation-for="Diploma" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="HOA" class="control-label"></label>
+                <input asp-for="HOA" class="form-control" />
+                <span asp-validation-for="HOA" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="SA" class="control-label"></label>
+                <input asp-for="SA" class="form-control" />
+                <span asp-validation-for="SA" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="CGPA" class="control-label"></label>
+                <input asp-for="CGPA" class="form-control" />
+                <span asp-validation-for="CGPA" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="AOI" class="form-label"></label>
+                <select asp-for="AOI" class="form-select">
+                    <option selected>  </option>
+                    <option> CORE </option>
+                    <option> IT </option>
+                </select>
+                <span asp-validation-for="AOI" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PassWord" class="control-label"></label>
+                <input asp-for="PassWord" type = "password" class="form-control" />
+                <span asp-validation-for="PassWord" class="text-danger"></span>
+            </div>
+              <div class="col-md-6">
+                <label asp-for="CPassWord" class="control-label"></label>
+                <input asp-for="CPassWord" type = "password" class="form-control" />
+                <span asp-validation-for="CPassWord" class="text-danger"></span>
+            </div>
+
+            <p>
+
+            </p>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

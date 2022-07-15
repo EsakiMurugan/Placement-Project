@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Placement.Models.Student>
+
+@{
+    ViewData["Title"] = "SearchResult";
+}
+
+<h1>SearchResult</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+             <th>
+                @Html.DisplayNameFor(model => model.StudentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Native_place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reg_no)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile_No)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SSLC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.XII)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Diploma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HOA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CGPA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AOI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PassWord)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Native_place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reg_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SSLC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.XII)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diploma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HOA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CGPA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AOI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassWord)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

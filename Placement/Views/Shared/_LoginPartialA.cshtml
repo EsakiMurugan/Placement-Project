@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+
+<ul class="navbar-nav">
+    @{
+        ViewBag.FacultyName = @HttpContextAccessor.HttpContext.Session.GetString("FacultyName");
+    }
+@if (ViewBag.FacultyName != null)
+{
+    <li class="nav-item">
+       @* <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>*@
+        <a id="manage" class="nav-link text-dark" asp-controller="Home" asp-action="Privacy" title="Manage">Hello Prof. @ViewBag.FacultyName</a>
+    </li>
+    <li class="nav-item">
+        <form> @* class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"*@
+            @*<button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>*@
+             <button id="logout" type="submit" class="nav-link btn btn-danger text-dark" asp-controller="Login" asp-action="Logout">Logout</button>
+        </form>
+    </li>
+}
+else
+{
+   @*CREATE DROPDOWN IN NAVIGATION METHOD-1*@
+  <div class="dropdown">
+       <button class="btn btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Login
+       </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+       <a class="dropdown-item" href="Login/SLogin">Student Login</a>
+       <a class="dropdown-item" href="Login/ALogin">Admin Login</a>
+   
+     </div>
+  </div>
+ 
+  
+  <div class="dropdown">
+       <button class="btn btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Register
+       </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+       <a class="dropdown-item" href="Login/SRegister">Student Register</a>
+       <a class="dropdown-item" href="Login/ARegister">Admin Register</a>
+     </div>
+  </div>
+
+  
+
+
+}
+</ul>
+
+
+ 
+   
