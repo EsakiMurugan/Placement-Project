@@ -9,6 +9,7 @@ namespace Placement.Models
         [Key]
         public int StudentId { get; set; }
         [Required]
+        [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Numbers and special characters are not allowed")]
         public string StudentName { get; set; }
         [Required]
         [Display(Name = "Date of Birth")]
@@ -48,6 +49,8 @@ namespace Placement.Models
         [Display(Name = "Area Of Interest")]
         public string AOI { get; set; }
         [Required]
+        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", 
+            ErrorMessage = "At least one uppercase, one lowercase, one digit, one special character and minimum eight in length")]
         public string PassWord { get; set; }
         [Compare("PassWord",ErrorMessage = "PassWord Not Match")]
         [NotMapped]

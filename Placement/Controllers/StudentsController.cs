@@ -29,8 +29,8 @@ namespace Placement.Controllers
                 Student s = db.student.Find(HttpContext.Session.GetInt32("LoginStudentId"));
                 List<Student> students = new List<Student>();
                 students.Add(s);
-                //return View(students);
-                return RedirectToAction("Details", new { id = s.StudentId });
+                return View(students);
+                //return RedirectToAction("Details", new { id = s.StudentId });
 
             }
             else

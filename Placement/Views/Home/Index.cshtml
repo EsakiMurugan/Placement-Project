@@ -1,7 +1,35 @@
 ﻿<!DOCTYPE html>
 <html>
     <head>
-       
+       <style>
+           #container {
+  height:350px; 
+  position:relative; 
+  overflow:hidden;
+}
+
+.photobanner {
+  position:absolute; 
+  top:0px; 
+  left:0px; 
+  overflow:hidden; 
+  white-space: nowrap;
+  animation: bannermove 10s linear infinite;
+}
+
+.photobanner img {    
+  margin: 0 0.5em 
+}
+
+@@keyframes bannermove {
+  0% {
+      transform: translate(0, 0);
+  }
+  100% {
+      transform: translate(-50%, 0);
+  }
+}
+       </style>
     </head>
     <body>
         <div>
@@ -33,5 +61,91 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+<p>
+
+</p>
+     
+     @* <marquee behavior="scroll" direction="left">
+      
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+               <div class="carousel-inner">
+                 <div class="carousel-item active" data-interval="5000">
+                       <img class="d-block" src="~/Documents/econ_Logo.jpg" width="200" height="200" alt="Wild Landscape"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/Delphi_logo.png" width="200" height="200"  alt="Camera"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/BI_Logo.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/Fac_logo.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/Finsurge.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/GD_logo.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/Gofrugal.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/Karomi.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/L&T.png"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/Mano_Logo.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/WB_Logo.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/SG_LOGO.png"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="500">
+                     <img class="d-block" src="~/Documents/Wipro_Logo.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/ZL_Logo.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                 <div class="carousel-item" data-interval="5000">
+                     <img class="d-block" src="~/Documents/zoho_logo.jpg"  width="200" height="200" alt="Exotic Fruits"/>
+                 </div>
+                
+                 
+               </div>
+          </div>
+      </marquee>*@
+     <div style="background-color:darkblue; padding:0px; height:200px"  >
+      <p style="text-align:center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:antiquewhite; font-size:30px" >
+          Our Recruiters
+      </p>
+      :
+      <div id="container">
+         <div class="photobanner">
+          <img src="~/Documents/BI_Logo.jpg" alt="" width="100" height="100"> |
+          <img src="~/Documents/Delphi_logo.png" alt="" width="100" height="100"> |
+          <img src="~/Documents/econ_Logo.jpg" alt="" width="100" height="100"> | 
+          <img src="~/Documents/Fac_logo.jpg" alt="" width="100" height="100"> | 
+          <img src="~/Documents/Finsurge.jpg" alt="" width="100" height="100"> | 
+          <img src="~/Documents/GD_logo.jpg" alt="" width="100" height="100"> | 
+          <img src="~/Documents/Gofrugal.jpg" alt="" width="100" height="100"> |
+          <img src="~/Documents/Karomi.jpg" alt="" width="100" height="100"> |
+          <img src="~/Documents/L&T.png" alt="" width="100" height="100"> |
+          <img src="~/Documents/Mano_Logo.jpg" alt="" width="100" height="100"> |
+          <img src="~/Documents/SG_LOGO.png" alt=""width="100" height="100"> |
+          <img src="~/Documents/WB_Logo.jpg" alt="" width="100" height="100"> |
+          <img src="~/Documents/Wipro_Logo.jpg" alt="" width="100" height="100"> |
+          <img src="~/Documents/ZL_Logo.jpg" alt="" width="100" height="100"> | 
+          <img src="~/Documents/zoho_logo.jpg" alt="" width="100" height="100"> |
+         </div>
+      </div>
+     </div>
+
+         
+
     </body>
 </html>

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Placement.Models;
 
 namespace Placement.Controllers
 {
+   
     public class CompaniesController : Controller
     {
         private readonly MSContext _context;
@@ -19,12 +22,20 @@ namespace Placement.Controllers
         }
 
         // GET: Companies
+        [NoDirectAccess]
         public async Task<IActionResult> Index()
+        {
+            return View(await _context.company.ToListAsync());
+        }
+        // GET: Companies
+        [NoDirectAccess]
+        public async Task<IActionResult> Index1()
         {
             return View(await _context.company.ToListAsync());
         }
 
         // GET: Companies/Details/5
+        [NoDirectAccess]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +54,7 @@ namespace Placement.Controllers
         }
 
         // GET: Companies/Create
+        [NoDirectAccess]
         public IActionResult Create()
         {
             return View();
@@ -53,18 +65,21 @@ namespace Placement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CompanyId,CompanyName,Domain,Role,Package,file")] Company company)
+        [NoDirectAccess]
+        public async Task<IActionResult> Create([Bind("CompanyId,CompanyName,Domain,Role,Package,File")] Company company)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(company);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("ALoginView","Login");
             }
             return View(company);
         }
 
         // GET: Companies/Edit/5
+        [NoDirectAccess]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,7 +100,8 @@ namespace Placement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CompanyId,CompanyName,Domain,Role,Package,file")] Company company)
+        [NoDirectAccess]
+        public async Task<IActionResult> Edit(int id, [Bind("CompanyId,CompanyName,Domain,Role,Package,File")] Company company)
         {
             if (id != company.CompanyId)
             {
@@ -136,6 +152,7 @@ namespace Placement.Controllers
         // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [NoDirectAccess]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var company = await _context.company.FindAsync(id);

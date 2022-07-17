@@ -1,10 +1,38 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Routing;
 using Placement.Models;
 using System.Linq;
 
 namespace Placement.Controllers
 {
+    public class NoDirectAccessAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var canAcess = false;
+
+            // check the refer
+            var referer = filterContext.HttpContext.Request.Headers["Referer"].ToString();
+            if (!string.IsNullOrEmpty(referer))
+            {
+                var rUri = new System.UriBuilder(referer).Uri;
+                var req = filterContext.HttpContext.Request;
+                if (req.Host.Host == rUri.Host && req.Host.Port == rUri.Port && req.Scheme == rUri.Scheme)
+                {
+                    canAcess = true;
+                }
+            }
+
+            // ... check other requirements
+
+            if (!canAcess)
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "Index", area = "" }));
+            }
+        }
+    }
     public class LoginController : Controller
     {
         private readonly MSContext db;
@@ -14,26 +42,37 @@ namespace Placement.Controllers
             this.db = db;
             session = httpContextAccessor.HttpContext.Session;
         }
+        public IActionResult Index()
+        {
+           
+            return View();
+        }
 
         public IActionResult SLogin()
         {
             return View();
         }
         [HttpPost]
+        [NoDirectAccess]
         public IActionResult SLogin(Student obj)
         {
             var result = (from i in db.student
                           where i.StudentId == obj.StudentId && i.PassWord == obj.PassWord
                           select i).SingleOrDefault();
+           
             ViewBag.StudentId = obj.StudentId;
             HttpContext.Session.SetInt32("LoginStudentId", obj.StudentId);
+            ViewBag.PassWord = obj.PassWord;
+            HttpContext.Session.SetString("LoginPassWord", obj.PassWord);
             if (result != null)
-            {
+            {   HttpContext.Session.SetString("PassWord",obj.PassWord);
                 HttpContext.Session.SetString("StudentName", result.StudentName);
                 return RedirectToAction("SLoginView","Login");
+               
             }
             else
             {
+                HttpContext.Session.SetString("LoginPassWord", obj.PassWord);
                 return View();
             }
         }
@@ -42,6 +81,7 @@ namespace Placement.Controllers
             return View();
         }
         [HttpPost]
+        [NoDirectAccess]
         public IActionResult SRegister(Student obj1)
         {
             ViewBag.StudentId = obj1.StudentId;
@@ -60,11 +100,14 @@ namespace Placement.Controllers
             return View();
         }
         [HttpPost]
+        [NoDirectAccess]
         public IActionResult ALogin(Admin obj)
         {
             var result = (from i in db.admin
                           where i.FacultyId == obj.FacultyId && i.PassWord == obj.PassWord
                           select i).SingleOrDefault();
+            ViewBag.PassWord = obj.PassWord;
+            HttpContext.Session.SetString("ALoginPassWord", obj.PassWord);
             if (result != null)
             {
                 HttpContext.Session.SetString("FacultyName", result.FacultyName);
@@ -73,6 +116,7 @@ namespace Placement.Controllers
             }
             else
             {
+                HttpContext.Session.SetString("ALoginPassWord", obj.PassWord);
                 return View();
             }
         }
@@ -81,6 +125,7 @@ namespace Placement.Controllers
             return View();
         }
         [HttpPost]
+        [NoDirectAccess]
         public IActionResult ARegister(Admin obj)
         {
             ViewBag.FacultyId = obj.FacultyId;
@@ -98,10 +143,12 @@ namespace Placement.Controllers
            
             
         }
+        [NoDirectAccess]
         public IActionResult ALoginView()
         {
             return View();
         }
+        [NoDirectAccess]
         public IActionResult SLoginView()
         {
             return View();

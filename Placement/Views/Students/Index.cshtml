@@ -2,7 +2,10 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_LayoutA";
+
 }
+
 
 <h1>Index</h1>
 
@@ -57,9 +60,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.AOI)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.PassWord)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -111,9 +114,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AOI)
             </td>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.PassWord)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |

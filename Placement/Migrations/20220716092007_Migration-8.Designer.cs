@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Placement.Models;
 
 namespace Placement.Migrations
 {
     [DbContext(typeof(MSContext))]
-    partial class MSContextModelSnapshot : ModelSnapshot
+    [Migration("20220716092007_Migration-8")]
+    partial class Migration8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +32,6 @@ namespace Placement.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FacultyName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Grade")
@@ -43,31 +44,6 @@ namespace Placement.Migrations
                     b.HasKey("FacultyId");
 
                     b.ToTable("admin");
-                });
-
-            modelBuilder.Entity("Placement.Models.Application", b =>
-                {
-                    b.Property<int>("ApplicationID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("ApplicationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ApplicationID");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("application");
                 });
 
             modelBuilder.Entity("Placement.Models.Company", b =>
@@ -163,25 +139,6 @@ namespace Placement.Migrations
                     b.HasKey("StudentId");
 
                     b.ToTable("student");
-                });
-
-            modelBuilder.Entity("Placement.Models.Application", b =>
-                {
-                    b.HasOne("Placement.Models.Company", "CompanysId")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Placement.Models.Student", "StudentsId")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CompanysId");
-
-                    b.Navigation("StudentsId");
                 });
 #pragma warning restore 612, 618
         }

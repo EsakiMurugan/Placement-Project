@@ -13,10 +13,10 @@ namespace Placement.Models
         [Required]
         public string Role { get; set; }
         [Required]
-        public string Package { get; set; }
-        public string file { get; set; }    
+        public string Package { get; set; } 
+        public string File { get; set; }    
+
 
 
     }
-
 }

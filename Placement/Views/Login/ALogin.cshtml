@@ -1,9 +1,15 @@
-﻿@model Placement.Models.Admin
+﻿@using Microsoft.AspNetCore.Http
+@model Placement.Models.Admin
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewData["Title"] = "ALogin";
     Layout = "Common";
 }
+
+ @{
+     ViewBag.PassWord = @HttpContextAccessor.HttpContext.Session.GetString("ALoginPassWord");
+  }
 
 <h1>Admin Login</h1>
 
@@ -25,6 +31,10 @@
                 <span asp-validation-for="PassWord" class="text-danger"></span>
             </div>
             <p>
+                @if(ViewBag.PassWord != null)
+                {
+                     <strong style="color:red">*PassWord Invalid</strong> 
+                }
 
             </p>
             <div class="form-group">

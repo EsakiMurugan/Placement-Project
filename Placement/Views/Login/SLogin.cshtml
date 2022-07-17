@@ -1,10 +1,19 @@
-﻿@model Placement.Models.Student
+﻿@using Microsoft.AspNetCore.Http
+@model Placement.Models.Student
+@inject IHttpContextAccessor HttpContextAccessor
+
 
 @{
     ViewData["Title"] = "SLogin";
     Layout = "Common";
 
 }
+
+ @{
+     ViewBag.PassWord = @HttpContextAccessor.HttpContext.Session.GetString("LoginPassWord");
+  }
+
+ 
 
 <h1>Student Login</h1>
 
@@ -26,7 +35,10 @@
                 <span asp-validation-for="PassWord" class="text-danger"></span>
             </div>
             <p>
-
+                @if(ViewBag.PassWord != null)
+                {
+                     <strong style="color:red">*PassWord Invalid</strong> 
+                }
             </p>
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary" />

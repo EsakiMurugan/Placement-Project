@@ -11,6 +11,8 @@ namespace Placement.Models
         public DbSet<Student> student { get; set; }
         public DbSet<Admin> admin { get; set; }
         public DbSet<Company> company { get; set; }
+        public DbSet<Application> application { get; set; }
+
 
 
     }

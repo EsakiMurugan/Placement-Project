@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Placement.Models;
 
 namespace Placement.Migrations
 {
     [DbContext(typeof(MSContext))]
-    partial class MSContextModelSnapshot : ModelSnapshot
+    [Migration("20220716143627_Migration-10")]
+    partial class Migration10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +32,6 @@ namespace Placement.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FacultyName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Grade")
