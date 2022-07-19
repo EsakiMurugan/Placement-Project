@@ -38,7 +38,22 @@ namespace Placement.Controllers
                 return View(await db.student.ToListAsync());
             }
         }
+        public async Task<IActionResult> Loadmore()
+        {
+            if (HttpContext.Session.GetInt32("LoginStudentId") != null)
+            {
+                Student s = db.student.Find(HttpContext.Session.GetInt32("LoginStudentId"));
+                List<Student> students = new List<Student>();
+                students.Add(s);
+                return View(students);
+                //return RedirectToAction("Details", new { id = s.StudentId });
 
+            }
+            else
+            {
+                return View(await db.student.ToListAsync());
+            }
+        }
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {

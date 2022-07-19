@@ -62,8 +62,8 @@ namespace Placement.Controllers
            
             ViewBag.StudentId = obj.StudentId;
             HttpContext.Session.SetInt32("LoginStudentId", obj.StudentId);
-            ViewBag.PassWord = obj.PassWord;
-            HttpContext.Session.SetString("LoginPassWord", obj.PassWord);
+            ViewBag.StudentId = obj.StudentId;
+            HttpContext.Session.SetInt32("ApplyStudentId", obj.StudentId);
             if (result != null)
             {   HttpContext.Session.SetString("PassWord",obj.PassWord);
                 HttpContext.Session.SetString("StudentName", result.StudentName);

@@ -4,15 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Placement.Models;
 
 namespace Placement.Controllers
 {
-    
     public class ApplicationsController : Controller
     {
         private readonly MSContext _context;
@@ -23,7 +20,6 @@ namespace Placement.Controllers
         }
 
         // GET: Applications
-        [NoDirectAccess]
         public async Task<IActionResult> Index()
         {
             var mSContext = _context.application.Include(a => a.CompanysId).Include(a => a.StudentsId);
@@ -31,7 +27,6 @@ namespace Placement.Controllers
         }
 
         // GET: Applications/Details/5
-        [NoDirectAccess]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -52,18 +47,17 @@ namespace Placement.Controllers
         }
 
         // GET: Applications/Create
-        [NoDirectAccess]
         public IActionResult Create()
         {
-            //    ViewData["CompanyId"] = new SelectList(_context.company, "CompanyId", "CompanyName");
-            //    ViewData["StudentId"] = new SelectList(_context.student, "StudentId", "AOI");
-            //    return View();
+            //ViewData["CompanyId"] = new SelectList(_context.company, "CompanyId", "CompanyName");
+            //ViewData["StudentId"] = new SelectList(_context.student, "StudentId", "AOI");
+            //return View();
+            //Student result = _context.student.Find(HttpContext.Session.GetInt32("ApplyStudentId"));
             var result = new SelectList(from i in _context.student select i.StudentId).ToList();
             var result1 = new SelectList(from i in _context.company select i.CompanyId).ToList();
             ViewBag.StudentId = result;
             ViewBag.CompanyId = result1;
             return View();
-
         }
 
         // POST: Applications/Create
@@ -71,30 +65,22 @@ namespace Placement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [NoDirectAccess]
-        public async Task<IActionResult> Create([Bind("ApplicationID,ApplicationDate,StudentId,CompanyId")] Application application, Application i)
+        public async Task<IActionResult> Create([Bind("ApplicationID,ApplicationDate,StudentId,CompanyId")] Application application)
         {
-            ////if (ModelState.IsValid)
-            //ViewBag.StudentId = application.StudentId;
-            //if (_context.application.Where(i => i.StudentsId.Contains(application.StudentId)).ToList())
+            //if (ModelState.IsValid)
             //{
-                _context.Add(application);
+            //application=new Application();
+            //application.StudentId = (int)TempData["StudentId"];
+               _context.Add(application);
                 await _context.SaveChangesAsync();
-                //HttpContext.Session.SetInt32("StudentId", application.StudentId);
-                return RedirectToAction("ALoginView", "Login");
+                return RedirectToAction("SLoginView","Login");
             //}
-            //else
-            //{
-            //    return View();
-            //}
-            
             //ViewData["CompanyId"] = new SelectList(_context.company, "CompanyId", "CompanyName", application.CompanyId);
             //ViewData["StudentId"] = new SelectList(_context.student, "StudentId", "AOI", application.StudentId);
             //return View(application);
         }
 
         // GET: Applications/Edit/5
-        [NoDirectAccess]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,7 +103,6 @@ namespace Placement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [NoDirectAccess]
         public async Task<IActionResult> Edit(int id, [Bind("ApplicationID,ApplicationDate,StudentId,CompanyId")] Application application)
         {
             if (id != application.ApplicationID)
@@ -151,7 +136,6 @@ namespace Placement.Controllers
         }
 
         // GET: Applications/Delete/5
-        [NoDirectAccess]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -174,7 +158,6 @@ namespace Placement.Controllers
         // POST: Applications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [NoDirectAccess]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var application = await _context.application.FindAsync(id);

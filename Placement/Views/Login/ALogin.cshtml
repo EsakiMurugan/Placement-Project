@@ -11,21 +11,23 @@
      ViewBag.PassWord = @HttpContextAccessor.HttpContext.Session.GetString("ALoginPassWord");
   }
 
-<h1>Admin Login</h1>
 
-<h4>Admin</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+
+
+
+<body style=" background-color:bisque">
+<div class="row row d-flex aligns-items-center justify-content-center" style="padding-top:100px">
+    <div class="col-4 card p-3 px-5 py-5 mt-3 bg-light">
+          <h1 style = text-align:center >Admin Login </h1>
         <form asp-action="ALogin">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-row align-items-center">
                 <label asp-for="FacultyId" class="control-label"></label>
                 <input asp-for="FacultyId" class="form-control" />
                 <span asp-validation-for="FacultyId" class="text-danger"></span>
             </div>
            
-            <div class="form-group">
+            <div class="form-row align-items-center">
                 <label asp-for="PassWord" class="control-label"></label>
                 <input asp-for="PassWord" type = "password" class="form-control" />
                 <span asp-validation-for="PassWord" class="text-danger"></span>
@@ -50,3 +52,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</body>

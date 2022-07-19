@@ -9,7 +9,7 @@
 }
 
 
-
+<body style=" background-color:bisque">
 
  @{
      ViewBag.StudentId = @HttpContextAccessor.HttpContext.Session.GetInt32("StudentId");
@@ -144,3 +144,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</body>

@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<Placement.Models.Student>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "_LayoutA";
-
+    ViewData["Title"] = "Loadmore";
 }
 
-
-<h1>Details</h1>
+<h1>Loadmore</h1>
 
 @*<p>
     <a asp-action="Create">Create New</a>
@@ -15,10 +12,7 @@
 <table class="table">
     <thead>
         <tr>
-             <th>
-                @Html.DisplayNameFor(model => model.StudentId)
-            </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.StudentName)
             </th>
             <th>
@@ -35,8 +29,8 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StudentEmail)
-            </th>
-           @* <th>
+            </th>*@
+            <th>
                 @Html.DisplayNameFor(model => model.Department)
             </th>
             <th>
@@ -59,7 +53,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AOI)
-            </th>*@
+            </th>
            @* <th>
                 @Html.DisplayNameFor(model => model.PassWord)
             </th>*@
@@ -69,10 +63,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
-            </td>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.StudentName)
             </td>
             <td>
@@ -89,8 +80,8 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StudentEmail)
-            </td>
-           @* <td>
+            </td>*@
+            <td>
                 @Html.DisplayFor(modelItem => item.Department)
             </td>
             <td>
@@ -113,15 +104,14 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AOI)
-            </td>*@
+            </td>
            @* <td>
                 @Html.DisplayFor(modelItem => item.PassWord)
             </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
-                @*<a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                @*<a asp-action="Details" asp-route-id="@item.StudentId">Details</a> 
                 <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>*@
-                 <a asp-action="Loadmore" asp-controller="Students" asp-route-id="@item.StudentId">Load more</a>
             </td>
         </tr>
 }

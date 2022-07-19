@@ -2,62 +2,43 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_LayoutA";
 }
 
 <h1>Index</h1>
 
-@*<p>
+<p>
     <a asp-action="Create">Create New</a>
-</p>*@
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationID)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ApplicationDate)
             </th>
-           @* <th>
+            <th>
                 @Html.DisplayNameFor(model => model.StudentsId)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.StudentsId.StudentName)
             </th>
-          @* <th>
+            <th>
                 @Html.DisplayNameFor(model => model.CompanysId)
-           </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.CompanysId.CompanyName)
             </th>
-           
+            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ApplicationID)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ApplicationDate)
             </td>
-          @*  <td>
-                @Html.DisplayFor(modelItem => item.StudentsId)
-            </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.StudentsId.StudentName)
+                @Html.DisplayFor(modelItem => item.StudentsId.AOI)
             </td>
-          @*  <td>
-                @Html.DisplayFor(modelItem => item.CompanysId)
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.CompanysId.CompanyName)
             </td>
             <td>
-               @* <a asp-action="Edit" asp-route-id="@item.ApplicationID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ApplicationID">Details</a> |*@
+                <a asp-action="Edit" asp-route-id="@item.ApplicationID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ApplicationID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ApplicationID">Delete</a>
             </td>
         </tr>

@@ -6,7 +6,7 @@
     ViewData["Title"] = "ARegister";
     Layout = "Common";
 }
-
+<body style=" background-color:bisque">
 
 @{
     ViewBag.FacultyId = @HttpContextAccessor.HttpContext.Session.GetInt32("FacultyId");
@@ -81,3 +81,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</body>
