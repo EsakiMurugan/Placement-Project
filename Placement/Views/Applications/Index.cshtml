@@ -2,13 +2,35 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_LayoutA";
 }
-
+@*
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Index">
+
+          @*  <p>
+                <input type="search" name="SearchPhrase" />
+            </p>*@
+
+            <div class="form-group">
+                <label for="SearchPhrase" class="control-label"></label>
+                <input name="SearchPhrase" class="form-control" />
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -16,10 +38,16 @@
                 @Html.DisplayNameFor(model => model.ApplicationDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StudentsId)
+                @Html.DisplayNameFor(model => model.StudentsId.StudentId)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.StudentsId.StudentName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CompanysId)
+                @Html.DisplayNameFor(model => model.CompanysId.CompanyId)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.CompanysId.CompanyName)
             </th>
             <th></th>
         </tr>
@@ -31,14 +59,20 @@
                 @Html.DisplayFor(modelItem => item.ApplicationDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StudentsId.AOI)
+                @Html.DisplayFor(modelItem => item.StudentsId.StudentId)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.StudentsId.StudentName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.CompanysId.CompanyId)
+            </td>
+             <td>
                 @Html.DisplayFor(modelItem => item.CompanysId.CompanyName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ApplicationID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ApplicationID">Details</a> |
+               @* <a asp-action="Edit" asp-route-id="@item.ApplicationID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ApplicationID">Details</a> |*@
                 <a asp-action="Delete" asp-route-id="@item.ApplicationID">Delete</a>
             </td>
         </tr>

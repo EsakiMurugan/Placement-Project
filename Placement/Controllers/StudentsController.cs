@@ -22,14 +22,31 @@ namespace Placement.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //    if (HttpContext.Session.GetInt32("LoginStudentId") != null)
+        //    {
+        //        Student s = db.student.Find(HttpContext.Session.GetInt32("LoginStudentId"));
+        //        //List<Student> students = new List<Student>();
+        //        students.Add(s);
+        //        return View(students);
+        //        //return RedirectToAction("Details", new { id = s.StudentId });
+
+        //    }
+
+        //    else
+        //    {
+        //        return View(await db.student.ToListAsync());
+        //    }
+        //}
+        public async Task<IActionResult> Index1()
         {
             if (HttpContext.Session.GetInt32("LoginStudentId") != null)
             {
                 Student s = db.student.Find(HttpContext.Session.GetInt32("LoginStudentId"));
                 List<Student> students = new List<Student>();
                 students.Add(s);
-                return View(students);
+                return RedirectToAction("Index1","students");
                 //return RedirectToAction("Details", new { id = s.StudentId });
 
             }
@@ -38,32 +55,52 @@ namespace Placement.Controllers
                 return View(await db.student.ToListAsync());
             }
         }
-        public async Task<IActionResult> Loadmore()
+
+        //public async Task<IActionResult> Loadmore()
+        //{
+        //    if (HttpContext.Session.GetInt32("LoginStudentId") != null)
+        //    {
+        //        Student s = db.student.Find(HttpContext.Session.GetInt32("LoginStudentId"));
+        //        List<Student> students = new List<Student>();
+        //        students.Add(s);
+        //        return View(students);
+        //        //return RedirectToAction("Details", new { id = s.StudentId });
+
+        //    }
+        //    else
+        //    {
+        //        return View(await db.student.ToListAsync());
+        //    }
+        //}
+        public async Task<IActionResult> Loadmore1()
         {
             if (HttpContext.Session.GetInt32("LoginStudentId") != null)
             {
                 Student s = db.student.Find(HttpContext.Session.GetInt32("LoginStudentId"));
                 List<Student> students = new List<Student>();
                 students.Add(s);
-                return View(students);
+                return RedirectToAction("Index1", "students");
                 //return RedirectToAction("Details", new { id = s.StudentId });
-
             }
             else
             {
                 return View(await db.student.ToListAsync());
             }
         }
+
         // GET: Students/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Student obj)
         {
-            if (id == null)
+            
+            ViewBag.StudentId = HttpContext.Session.GetInt32("LoginStudentId");
+            obj.StudentId  = ViewBag.StudentId;
+            if (obj.StudentId == null)
             {
                 return NotFound();
             }
 
             var student = await db.student
-                .FirstOrDefaultAsync(m => m.StudentId == id);
+                .FirstOrDefaultAsync(m => m.StudentId == obj.StudentId);
             if (student == null)
             {
                 return NotFound();
@@ -179,16 +216,12 @@ namespace Placement.Controllers
             return db.student.Any(e => e.StudentId == id);
         }
         
-        [HttpGet]
-        public IActionResult SearchForm()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult SearchResult(string SearchPhrase)
-        {
-            return View(db.student.Where(i => i.Reg_no.Contains(SearchPhrase)).ToList());
-        }
+        //[HttpGet]
+        //public IActionResult SearchForm()
+        //{
+        //    return View();
+        //}
+        
     }
 }
 

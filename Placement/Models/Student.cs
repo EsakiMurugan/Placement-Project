@@ -7,8 +7,10 @@ namespace Placement.Models
     public class Student
     {
         [Key]
+        [Display(Name = "Student ID")]
         public int StudentId { get; set; }
         [Required]
+        [Display(Name = "Student Name")]
         [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Numbers and special characters are not allowed")]
         public string StudentName { get; set; }
         [Required]
@@ -51,10 +53,11 @@ namespace Placement.Models
         [Required]
         [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", 
             ErrorMessage = "At least one uppercase, one lowercase, one digit, one special character and minimum eight in length")]
+        [Display(Name = "Password")]
         public string PassWord { get; set; }
-        [Compare("PassWord",ErrorMessage = "PassWord Not Match")]
+        [Compare("PassWord",ErrorMessage = "Password Not Matching")]
         [NotMapped]
-        [Display(Name = "Confirm PassWord")]
+        [Display(Name = "Confirm Password")]
         public string CPassWord { get; set; }
     }
 }

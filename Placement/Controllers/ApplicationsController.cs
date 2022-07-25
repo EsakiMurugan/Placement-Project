@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Placement.Models;
+using Rotativa.AspNetCore;
 
 namespace Placement.Controllers
 {
@@ -24,7 +25,17 @@ namespace Placement.Controllers
         {
             var mSContext = _context.application.Include(a => a.CompanysId).Include(a => a.StudentsId);
             return View(await mSContext.ToListAsync());
+            //var ApplicationList = _context.application.ToList();   
+
+            //return View(ApplicationList);
         }
+
+        [HttpPost]
+        //public IActionResult Index(int SearchPhrase)
+        //{
+        //    string Search = Convert.ToString(SearchPhrase);
+        //    return View(_context.company .Where(i => i.CompanyId.Contains(Search)).ToList());
+        //}
 
         // GET: Applications/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -53,10 +64,16 @@ namespace Placement.Controllers
             //ViewData["StudentId"] = new SelectList(_context.student, "StudentId", "AOI");
             //return View();
             //Student result = _context.student.Find(HttpContext.Session.GetInt32("ApplyStudentId"));
-            var result = new SelectList(from i in _context.student select i.StudentId).ToList();
-            var result1 = new SelectList(from i in _context.company select i.CompanyId).ToList();
-            ViewBag.StudentId = result;
-            ViewBag.CompanyId = result1;
+            //var result = new SelectList(from i in _context.student select i.StudentId).ToList();
+            //var result1 = new SelectList(from i in _context.company select i.CompanyId).ToList();
+            ////ViewBag.StudentId = result;
+            //ViewBag.CompanyId = result1;
+
+            //Application C = new Application();
+            //ViewBag.CompanyId = C.CompanyId;
+
+
+            //HttpContext.Session.SetInt32("ApplyCompanyId", (int)C.CompanyId);
             return View();
         }
 
@@ -65,15 +82,34 @@ namespace Placement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ApplicationID,ApplicationDate,StudentId,CompanyId")] Application application)
+        public async Task<IActionResult> Create([Bind("ApplicationID")] Application application)
         {
             //if (ModelState.IsValid)
             //{
             //application=new Application();
-            //application.StudentId = (int)TempData["StudentId"];
-               _context.Add(application);
+            ////application.StudentId = (int)TempData["StudentId"];
+            @ViewBag.StudentId = HttpContext.Session.GetInt32("ApplyStudentId");
+            @ViewBag.CompanyId = HttpContext.Session.GetInt32("ApplyCompanyId");
+            //Application a = new Application();
+            application.StudentId = ViewBag.StudentId;
+            application.CompanyId = ViewBag.CompanyId;
+            var result = (from i in _context.application
+                          where i.CompanyId == application.CompanyId && i.StudentId == application.StudentId
+                          select i).FirstOrDefault();
+            if (result == null)
+            {
+                application.ApplicationDate = DateTime.Now;
+                _context.Add(application);
+                //ViewBag.application = HttpContext.Session.SetString("PDF", application);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("SLoginView","Login");
+                ViewBag.SuccessMessage = "Best Wishes,You are successfully applied";
+                return View();
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Already Applied";
+                return View();
+            }
             //}
             //ViewData["CompanyId"] = new SelectList(_context.company, "CompanyId", "CompanyName", application.CompanyId);
             //ViewData["StudentId"] = new SelectList(_context.student, "StudentId", "AOI", application.StudentId);
@@ -165,7 +201,7 @@ namespace Placement.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+       
         private bool ApplicationExists(int id)
         {
             return _context.application.Any(e => e.ApplicationID == id);

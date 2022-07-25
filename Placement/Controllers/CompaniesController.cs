@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,10 +16,12 @@ namespace Placement.Controllers
     public class CompaniesController : Controller
     {
         private readonly MSContext _context;
+        private readonly ISession session;
 
-        public CompaniesController(MSContext context)
+        public CompaniesController(MSContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            session = httpContextAccessor.HttpContext.Session;
         }
 
         // GET: Companies
@@ -31,6 +34,7 @@ namespace Placement.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Index1()
         {
+
             return View(await _context.company.ToListAsync());
         }
 
@@ -38,6 +42,7 @@ namespace Placement.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> Details(int? id)
         {
+            Company c = new Company();
             if (id == null)
             {
                 return NotFound();
@@ -49,7 +54,8 @@ namespace Placement.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.CompanyId = company.CompanyId;
+            HttpContext.Session.SetInt32("ApplyCompanyId",company.CompanyId);
             return View(company);
         }
 
@@ -57,6 +63,7 @@ namespace Placement.Controllers
         [NoDirectAccess]
         public IActionResult Create()
         {
+          
             return View();
         }
 
@@ -73,7 +80,7 @@ namespace Placement.Controllers
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("ALoginView","Login");
+                return RedirectToAction("Index1","Companies");
             }
             return View(company);
         }

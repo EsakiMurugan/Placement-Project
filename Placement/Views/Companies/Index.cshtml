@@ -1,67 +1,73 @@
-﻿@model IEnumerable<Placement.Models.Company>
+﻿@using Microsoft.AspNetCore.Http
+@*@model Placement.Models.Admin*@
+@inject IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<Placement.Models.Company>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "_LayoutA";
 }
 
-<h1>Job Notification</h1>
+@*<h1>Job Notification</h1>*@
 
 @*<p>
     <a asp-action="Create">Create New</a>
 </p>*@
-<table class="table">
-    <thead>
-        <tr>
-             <th>
-                @Html.DisplayNameFor(model => model.CompanyId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompanyName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Domain)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Package)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.File)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Domain)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Package)
-            </td>
-            <td>
-               @* @Html.DisplayFor(modelItem => item.File)*@
-               <img src="~/Documents/@item.File" alt="no data" height="100" width="100"/>
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CompanyId">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.CompanyId">Delete</a> 
-               @* <a asp-action="Details" asp-route-id="@item.CompanyId">Details</a>*@
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Domain)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Package)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.File)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Domain)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Package)
+                    </td>
+                    <td>
+                        @* @Html.DisplayFor(modelItem => item.File)*@
+                        <img src="~/Documents/@item.File" alt="no data" height="100" width="100"/>
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CompanyId">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CompanyId">Delete</a> 
+                        @* <a asp-action="Details" asp-route-id="@item.CompanyId">Details</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+

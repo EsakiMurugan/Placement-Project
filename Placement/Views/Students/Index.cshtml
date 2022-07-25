@@ -1,129 +1,117 @@
-﻿@model IEnumerable<Placement.Models.Student>
+﻿
+@model Placement.Models.Student
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_LayoutA";
-
+    Layout = "_LayoutS";
 }
 
-
-<h1>Details</h1>
-
+@*<h1>Details</h1>
+*@
 @*<p>
     <a asp-action="Create">Create New</a>
 </p>*@
-<table class="table">
-    <thead>
-        <tr>
-             <th>
-                @Html.DisplayNameFor(model => model.StudentId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DOB)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Native_place)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Reg_no)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mobile_No)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentEmail)
-            </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SSLC)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.XII)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Diploma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HOA)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SA)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CGPA)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AOI)
-            </th>*@
-           @* <th>
-                @Html.DisplayNameFor(model => model.PassWord)
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DOB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Native_place)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reg_no)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mobile_No)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentEmail)
-            </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.Department)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SSLC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.XII)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diploma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HOA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CGPA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AOI)
-            </td>*@
-           @* <td>
-                @Html.DisplayFor(modelItem => item.PassWord)
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
-                @*<a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>*@
-                 <a asp-action="Loadmore" asp-controller="Students" asp-route-id="@item.StudentId">Load more</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StudentName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Native_place)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Native_place)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Reg_no)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Reg_no)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Mobile_No)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Mobile_No)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StudentEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SSLC)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SSLC)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.XII)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.XII)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Diploma)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Diploma)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HOA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HOA)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SA)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CGPA)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CGPA)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AOI)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AOI)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PassWord)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PassWord)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.StudentId">Edit</a> |
+    
+</div>
+
+   
+

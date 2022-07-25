@@ -7,10 +7,7 @@
 
 
 <ul class="navbar-nav">
-    @{
-        ViewBag.StudentName = @HttpContextAccessor.HttpContext.Session.GetString("StudentName");
-        
-    }
+   
 @if (ViewBag.StudentName != null)
 {
     <li class="nav-item">

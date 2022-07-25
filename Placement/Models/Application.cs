@@ -12,11 +12,11 @@ namespace Placement.Models
         [DataType(DataType.Date)]
         public DateTime ApplicationDate { get; set; }
         [Required]
-        public int StudentId { get; set; }
+        public int? StudentId { get; set; }
         [ForeignKey("StudentId")]
         public virtual Student StudentsId { get; set; }
         [Required]
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public virtual Company CompanysId { get; set; }
     }

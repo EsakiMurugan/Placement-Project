@@ -67,7 +67,7 @@ namespace Placement.Controllers
             if (result != null)
             {   HttpContext.Session.SetString("PassWord",obj.PassWord);
                 HttpContext.Session.SetString("StudentName", result.StudentName);
-                return RedirectToAction("SLoginView","Login");
+                return RedirectToAction("Details","Students");
                
             }
             else
@@ -108,10 +108,12 @@ namespace Placement.Controllers
                           select i).SingleOrDefault();
             ViewBag.PassWord = obj.PassWord;
             HttpContext.Session.SetString("ALoginPassWord", obj.PassWord);
+            //ViewBag.FacultyId = obj.FacultyId;
+            //HttpContext.Session.SetInt32("AFacultyId", obj.FacultyId);
             if (result != null)
             {
                 HttpContext.Session.SetString("FacultyName", result.FacultyName);
-                return RedirectToAction("ALoginView","Login");
+                return RedirectToAction("Index","Companies");
               
             }
             else
@@ -144,12 +146,7 @@ namespace Placement.Controllers
             
         }
         [NoDirectAccess]
-        public IActionResult ALoginView()
-        {
-            return View();
-        }
-        [NoDirectAccess]
-        public IActionResult SLoginView()
+        public IActionResult Popup()
         {
             return View();
             

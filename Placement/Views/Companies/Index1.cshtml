@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index1";
+    Layout = "_LayoutS";
 }
 
 <h1>Job Announcement</h1>
@@ -56,9 +57,9 @@
                  <img src="~/Documents/@item.File" alt="no data" height="100" width="100"/>
             </td>
             <td>
-                <a asp-controller= "Applications" asp-action="Create" asp-route-id="@item.CompanyId">Apply</a> @*|
-                <a asp-action="Details" asp-route-id="@item.CompanyId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CompanyId">Delete</a>*@
+                
+                <a asp-action="Details" asp-route-id="@item.CompanyId">Details</a> 
+               @* <a asp-action="Delete" asp-route-id="@item.CompanyId">Delete</a>*@
             </td>
         </tr>
 }
