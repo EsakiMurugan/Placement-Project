@@ -170,6 +170,7 @@ namespace Placement.Controllers
 
         private bool CompanyExists(int id)
         {
+            
             return _context.company.Any(e => e.CompanyId == id);
         }
     }

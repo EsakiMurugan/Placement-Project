@@ -30,13 +30,6 @@ namespace Placement.Controllers
             //return View(ApplicationList);
         }
 
-        [HttpPost]
-        //public IActionResult Index(int SearchPhrase)
-        //{
-        //    string Search = Convert.ToString(SearchPhrase);
-        //    return View(_context.company .Where(i => i.CompanyId.Contains(Search)).ToList());
-        //}
-
         // GET: Applications/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -201,7 +194,14 @@ namespace Placement.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-       
+        public async Task <IActionResult> DemoViewAsPDF()
+        {
+            var mSContext = _context.application.Include(a => a.CompanysId).Include(a => a.StudentsId);
+            /* List<Application> result = application.ToList();*/    /*new List<Application> ();*/
+            return new ViewAsPdf(await mSContext.ToListAsync());
+            //return new ViewAsPdf(result);
+        }
+
         private bool ApplicationExists(int id)
         {
             return _context.application.Any(e => e.ApplicationID == id);

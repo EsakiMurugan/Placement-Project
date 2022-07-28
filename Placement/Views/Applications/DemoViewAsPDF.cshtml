@@ -1,15 +1,30 @@
 ﻿@model IEnumerable<Placement.Models.Application>
 
+
 @{
-    ViewData["Title"] = "Index";
-    Layout = "_LayoutA";
+    ViewData["Title"] = "DemoViewAsPDF";
+    Layout = "_LayoutP";
+
 }
 
-@*<h1>Index</h1>*@
+<h1>Applications</h1>
 
-<p>
-    <a asp-action="DemoViewAsPdf">Print</a>
-</p>
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
 
 <table class="table">
     <thead>
@@ -50,12 +65,13 @@
              <td>
                 @Html.DisplayFor(modelItem => item.CompanysId.CompanyName)
             </td>
-            <td>
-               @* <a asp-action="Edit" asp-route-id="@item.ApplicationID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ApplicationID">Details</a> |*@
+           @* <td>
+               <a asp-action="Edit" asp-route-id="@item.ApplicationID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ApplicationID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ApplicationID">Delete</a>
-            </td>
+            </td>*@
         </tr>
 }
     </tbody>
 </table>
+</html>

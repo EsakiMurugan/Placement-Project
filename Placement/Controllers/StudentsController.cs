@@ -215,13 +215,22 @@ namespace Placement.Controllers
         {
             return db.student.Any(e => e.StudentId == id);
         }
-        
-        //[HttpGet]
-        //public IActionResult SearchForm()
-        //{
-        //    return View();
-        //}
-        
+
+        [HttpGet]
+        public IActionResult SearchForm()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UserIndex(string SearchPhrase)     //User Post method
+        {
+            return View(db.student .Where(i => i.Reg_no.Contains(SearchPhrase)).ToList());
+
+        }
+
+
+
+
     }
 }
 
