@@ -208,7 +208,7 @@ namespace Placement.Controllers
             var student = await db.student.FindAsync(id);
             db.student.Remove(student);
             await db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index1","Students");
         }
 
         private bool StudentExists(int id)
