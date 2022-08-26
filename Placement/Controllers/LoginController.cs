@@ -65,7 +65,7 @@ namespace Placement.Controllers
             ViewBag.StudentId = obj.StudentId;
             HttpContext.Session.SetInt32("ApplyStudentId", obj.StudentId);
             if (result != null)
-            {   HttpContext.Session.SetString("PassWord",obj.PassWord);
+            {   HttpContext.Session.SetString("PassWord",obj.PassWord); //Password wrong in the sense give error
                 HttpContext.Session.SetString("StudentName", result.StudentName);
                 return RedirectToAction("Details","Students");
                

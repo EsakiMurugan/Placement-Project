@@ -6,19 +6,11 @@
 @{
     ViewData["Title"] = "SLogin";
     Layout = "Common";
-
 }
 
  @{
      ViewBag.PassWord = @HttpContextAccessor.HttpContext.Session.GetString("LoginPassWord");
   }
-
- 
-
-
-
-
-
 <body style=" background-color:bisque">
 <div class="row row d-flex aligns-items-center justify-content-center" style="padding-top:100px">
     <div class="col-4 card p-3 px-5 py-5 mt-3 bg-light">

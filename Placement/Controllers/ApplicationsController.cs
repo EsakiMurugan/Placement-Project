@@ -81,8 +81,8 @@ namespace Placement.Controllers
             //{
             //application=new Application();
             ////application.StudentId = (int)TempData["StudentId"];
-            @ViewBag.StudentId = HttpContext.Session.GetInt32("ApplyStudentId");
-            @ViewBag.CompanyId = HttpContext.Session.GetInt32("ApplyCompanyId");
+            @ViewBag.StudentId = HttpContext.Session.GetInt32("ApplyStudentId");//Get from Login controller/SLogin
+            @ViewBag.CompanyId = HttpContext.Session.GetInt32("ApplyCompanyId");//Get from Companies controller/Details
             //Application a = new Application();
             application.StudentId = ViewBag.StudentId;
             application.CompanyId = ViewBag.CompanyId;
@@ -194,6 +194,8 @@ namespace Placement.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        // While converting from .NET5 to .NET6 Print as PDF function not enabled.
         public async Task <IActionResult> DemoViewAsPDF()
         {
             var mSContext = _context.application.Include(a => a.CompanysId).Include(a => a.StudentsId);
