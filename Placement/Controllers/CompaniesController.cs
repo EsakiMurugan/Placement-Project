@@ -80,7 +80,7 @@ namespace Placement.Controllers
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Index1","Companies");
+                return RedirectToAction("Index","Companies");
             }
             return View(company);
         }
